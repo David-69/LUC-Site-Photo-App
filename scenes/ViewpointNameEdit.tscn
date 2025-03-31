@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvy207hjbw3nv"]
+
+[ext_resource type="Script" uid="uid://bpomdk2catdiq" path="res://Scripts/viewpoint_name_edit.gd" id="1_u8fo5"]
+[ext_resource type="Script" uid="uid://deec43unajcku" path="res://Resources/ViewpointContents.gd" id="2_0ytmg"]
+
+[sub_resource type="Resource" id="Resource_5oujb"]
+script = ExtResource("2_0ytmg")
+Viewpoint_Name = ""
+metadata/_custom_type_script = "uid://deec43unajcku"
+
+[node name="Viewpoint Name Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u8fo5")
+contents = SubResource("Resource_5oujb")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223529, 0.223529, 0.223529, 0.52549)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="CenterContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+placeholder_text = "Enter Viewpoint Name..."
+max_length = 50
+clear_button_enabled = true

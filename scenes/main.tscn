@@ -1,12 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dsao4tkd8snrh"]
+[gd_scene load_steps=2 format=3 uid="uid://dsao4tkd8snrh"]
 
-[ext_resource type="Script" uid="uid://8sqj7o42tn8i" path="res://Scripts/button.gd" id="1_o5qli"]
-[ext_resource type="Script" uid="uid://deec43unajcku" path="res://Resources/ViewpointContents.gd" id="2_0wfyh"]
-
-[sub_resource type="Resource" id="Resource_0wfyh"]
-script = ExtResource("2_0wfyh")
-Viewpoint_Name = ""
-metadata/_custom_type_script = "uid://deec43unajcku"
+[ext_resource type="PackedScene" uid="uid://dww55fk52ltfo" path="res://scenes/Viewpoint.tscn" id="1_o5qli"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -33,31 +27,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -121.0
-offset_top = 137.0
-offset_right = 121.0
-offset_bottom = -137.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(250, 400)
+layout_mode = 2
 draw_focus_border = true
 scroll_vertical_custom_step = 1.0
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="ViewpointContainer" parent="CenterContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_o5qli")]
 layout_mode = 2
-
-[node name="Button" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Viewpoint"
-script = ExtResource("1_o5qli")
-ButtonText = "VP01_Roadside"
-contents = SubResource("Resource_0wfyh")
+alignment = 1
