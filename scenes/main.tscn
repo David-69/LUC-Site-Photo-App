@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsao4tkd8snrh"]
+[gd_scene load_steps=5 format=3 uid="uid://dsao4tkd8snrh"]
 
 [ext_resource type="PackedScene" uid="uid://dww55fk52ltfo" path="res://scenes/Viewpoint.tscn" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://d18poy1v0dtuv" path="res://Scripts/save_button.gd" id="3_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://bsyvi2468j74f" path="res://UI/icons/Hamburger-icon.png" id="3_sugp2"]
+[ext_resource type="Script" uid="uid://bdliy1pnemmkp" path="res://Scripts/add_viewpoint_button.gd" id="4_jyhfs"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -10,7 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,18 +30,58 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 400)
 layout_mode = 2
+size_flags_vertical = 3
 draw_focus_border = true
 scroll_vertical_custom_step = 1.0
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/ScrollContainer"]
+[node name="VP-Container" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="ViewpointContainer" parent="CenterContainer/ScrollContainer/VBoxContainer" instance=ExtResource("1_o5qli")]
+[node name="ViewpointContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/VP-Container" instance=ExtResource("1_o5qli")]
 layout_mode = 2
 alignment = 1
+
+[node name="add_viewpoint_button" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("4_jyhfs")
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/add_viewpoint_button"]
+layout_mode = 2
+text = "+ Add Viewpoint"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 674.0
+offset_top = 65.0
+offset_right = 708.0
+offset_bottom = 98.0
+scale = Vector2(0.796856, 0.790214)
+
+[node name="SaveButton" type="Button" parent="PanelContainer"]
+layout_mode = 2
+script = ExtResource("3_jyhfs")
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer/SaveButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 613.0
+offset_bottom = 613.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.052, 0.052)
+texture = ExtResource("3_sugp2")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/add_viewpoint_button/Button" to="CenterContainer/VBoxContainer/add_viewpoint_button" method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/SaveButton" to="PanelContainer/SaveButton" method="_on_SaveButton_pressed"]

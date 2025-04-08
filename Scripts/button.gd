@@ -8,6 +8,7 @@ var line_edit : LineEdit
 @export var contents : ViewpointContents
 
 func _ready() -> void:
+	contents = ViewpointContents.new()
 	if contents != null:
 		contents.Viewpoint_Name = ButtonText
 		set_text(contents.Viewpoint_Name)
@@ -28,3 +29,4 @@ func _on_text_submitted(new_text: String) -> void:
 	contents.Viewpoint_Name = new_text
 	line_edit.hide()
 	show()
+	
